@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Details</title>
+</head>
+<body>
+  <h1>Welcome <%= user.contactName %>!</h1>
+  <p>Ward No: <%= user.wardNo %></p>
+  <p>Street Name: <%= user.streetName %></p>
+  <p>Block No: <%= user.blockNo %></p>
+  <p>Floor No: <%= user.floorNo %></p>
+  <p>Door No: <%= user.doorNo %></p>
+  <p>Contact No: <%= user.contactNo %></p>
+  <p>Building Usage: <%= user.buildingUsage %></p>
+  <p>Property Tax No: <%= user.propertyTaxNo %></p>
+  <p>Water Tax No: <%= user.waterTaxNo %></p>
+  <p>EB Service No: <%= user.ebServiceNo %></p>
+  <p>Ration Card No/GST No: <%= user.rationCardNo %></p>
+
+  <button onclick="location.href='/grievances'">Register Complaint</button>
+</body>
+</html>

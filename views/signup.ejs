@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up Page</title>
+  <style media="screen">
+    form {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 100%;
+  border-radius: 3px;
+  border: none;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <form action="/signup" method="post">
+    <label for="wardNo">Ward No:</label>
+    <input type="text" id="wardNo" name="wardNo" required><br>
+
+    <label for="streetName">Street Name:</label>
+    <input type="text" id="streetName" name="streetName" required><br>
+
+    <label for="blockNo">Block No:</label>
+    <input type="text" id="blockNo" name="blockNo" required><br>
+
+    <label for="floorNo">Floor No:</label>
+    <input type="text" id="floorNo" name="floorNo" required><br>
+
+    <label for="doorNo">Door No:</label>
+    <input type="text" id="doorNo" name="doorNo" required><br>
+
+    <label for="contactName">Contact Name:</label>
+    <input type="text" id="contactName" name="contactName" required><br>
+
+    <label for="contactNo">Contact No:</label>
+    <input type="text" id="contactNo" name="contactNo" required><br>
+
+    <label for="buildingUsage">Building Usage:</label>
+    <input type="text" id="buildingUsage" name="buildingUsage" required><br>
+
+    <label for="propertyTaxNo">Property Tax No:</label>
+    <input type="text" id="propertyTaxNo" name="propertyTaxNo" required><br>
+
+    <label for="waterTaxNo">Water Tax No:</label>
+    <input type="text" id="waterTaxNo" name="waterTaxNo" required><br>
+
+    <label for="ebServiceNo">EB Service No:</label>
+    <input type="text" id="ebServiceNo" name="ebServiceNo" required><br>
+
+    <label for="rationCardNo">Ration Card No/GST No:</label>
+    <input type="text" id="rationCardNo" name="rationCardNo" required><br>
+
+    <button type="submit">Sign Up</button>
+  </form>
+</body>
+</html>

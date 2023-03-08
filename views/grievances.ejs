@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grievance Registration Form</title>
+    <style>
+      /* CSS styles for the form */
+      form {
+        width: 80%;
+        margin: 0 auto;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: none;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Grievance Registration Form</h1>
+    <form action="/grievances" method="post">
+      <label for="name">Complaint type</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required>
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" name="phone">
+      <label for="description">Grievance Description:</label>
+      <textarea id="description" name="description" required></textarea>
+      <label for="attachments">Attachments:</label>
+      <input type="file" id="attachments" name="attachments">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

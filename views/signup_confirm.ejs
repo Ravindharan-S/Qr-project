@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up Confirmation</title>
+</head>
+<body>
+  <h1>Thank you for signing up!</h1>
+  <p>Your unique PIN number is: <strong><%= pin %></strong></p>
+  <p>Please keep this PIN number safe, as you will need it to log in again.</p>
+
+
+ <img src="<%= url %>" alt="QRcode">
+ <br>
+ <br>
+ <button onclick="location.href='/login'">Login</button>
+</body>
+</html>
