@@ -2,16 +2,42 @@
 <html>
 <head>
   <title>Authentication Page</title>
+  <style>
+  /* Center the container */
+.container {
+  margin: 0 auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Style the buttons */
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+  </style>
 </head>
 <body>
-  <h1>Welcome to the site</h1>
-  <div>
+  <h1>Welcome to the Grievance Registration site</h1>
+
+    <div class="container">
     <h2>Login</h2>
-    <button onclick="location.href='/login'">Login</button>
-  </div>
-  <div>
+    <button class="button" onclick="location.href='/login'">Login</button>
+
     <h2>Sign Up</h2>
-    <button onclick="location.href='/signup'">Sign Up</button>
+    <button class="button" onclick="location.href='/signup'">Sign Up</button>
   </div>
 </body>
 </html>
