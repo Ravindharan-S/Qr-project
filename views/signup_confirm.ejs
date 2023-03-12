@@ -2,7 +2,55 @@
 <html>
 <head>
   <title>Sign Up Confirmation</title>
+  <style >
+  /* Apply some basic styles to the body */
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+}
+
+/* Style the page title */
+h1 {
+font-size: 2em;
+margin: 0.5em 0;
+}
+
+/* Style the PIN number */
+strong {
+font-size: 1.5em;
+}
+
+/* Center the image */
+img {
+display: block;
+margin: 1em auto;
+max-width: 100%;
+}
+
+
+
+/* Style the login button */
+button {
+display: block;
+margin: 1em auto;
+padding: 0.5em 1em;
+background-color: #28a745;
+color: #fff;
+border-radius: 4px;
+border: none;
+font-size: 1.2em;
+cursor: pointer;
+transition: background-color 0.2s ease;
+}
+
+button:hover {
+background-color: #218838;
+}
+
+  </style>
 </head>
+
 <body>
   <h1>Thank you for signing up!</h1>
   <p>Your unique PIN number is: <strong><%= pin %></strong></p>
@@ -10,6 +58,9 @@
 
 
  <img src="<%= url %>" alt="QRcode">
+ <!-- EJS code for the download button -->
+<a href="<%= url %>" download="generate-image">Download Image</a>
+
  <br>
  <br>
  <button onclick="location.href='/login'">Login</button>

@@ -148,6 +148,44 @@ res.status(500).send('Error saving user to database');
 
 
 });
+//downloading Qr--------------------------------------------------------------------------------
+// Node.js endpoint to generate and return the image
+app.get('/generate-image', function(req, res) {
+  // Generate the image using your favorite library (e.g. canvas, sharp)
+  const image = generateImage();
+
+  // Set the content-disposition header to trigger a download
+  res.set('Content-Disposition', `attachment; filename="my-image.png"`);
+
+  // Set the content-type header to indicate the type of the response
+  res.set('Content-Type', 'image/png');
+
+  // Send the image as the response body
+  res.send(image);
+});
+
+// HTML button to trigger the download
+
+
+// JavaScript function to trigger the download
+function downloadImage() {
+  // Make a GET request to the endpoint
+  fetch('/generate-image')
+    .then(response => {
+      // Trigger the download using the response headers
+      const filename = response.headers.get('content-disposition').split('=')[1];
+      response.blob().then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+    });
+}
+
 //Getting the login values
 app.post('/login', (req, res) => {
     const pin  = req.body.pin;
