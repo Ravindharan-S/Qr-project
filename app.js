@@ -10,6 +10,7 @@ const qrcode = require('qrcode');
 // Create an instance of Express.js
 const app = express();
 app.set('view engine', 'ejs');
+app.use( express.static( "public" ) );
 app.use(bodyParser.urlencoded({ extended: true }));
 // Without middleware
 
@@ -130,7 +131,7 @@ res.status(500).send('Error saving user to database');
       console.error(err);
       return res.status(500).send('Internal Server Error');
     }
-  const data = JSON.stringify(user);
+  const data = "https://red-tender-gharial.cyclic.app/login";
   qrcode.toDataURL(data, (err, url) => {
     if (err) {
       console.error(err);
