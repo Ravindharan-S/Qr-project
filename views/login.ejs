@@ -2,12 +2,34 @@
 <html>
 <head>
   <title>Login Page</title>
+  <style media="screen">
+    body{
+      background-color: #B9E9FC;
+    }
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+    body{
+      background-color:#B9E9FC;
+    }
+      
+  </style>
 </head>
 <body>
   <h1>Login</h1>
   <form action="/login" method="post">
     <label for="pin">PIN:</label>
-    <input type="text" id="pin" name="pin" required><br>
+    <input type="text" id="pin" name="pin" required><br><br />
     <button type="submit">Login</button>
   </form>
 </body>
