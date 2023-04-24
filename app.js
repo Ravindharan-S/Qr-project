@@ -87,6 +87,9 @@ app.get('/', (req, res) => {
 app.get("/login",function(req,res){
   res.render("login");
 });
+app.get("/admin",function(req,res){
+  res.render("admin");
+});
 app.get("/signup",function(req,res){
   res.render("signup");
 });
@@ -208,7 +211,23 @@ app.post('/login', (req, res) => {
       res.render('user-details', { user });
     });
   });
+app.post("/admin",(req,res)=>{
+  const user=req.body.username;
+  const pass=req.body.password;
 
+  if(user==="Ravi" && pass==="ravi1234"){
+    try {
+      const grievances =Grievance.find();
+    res.render('dashboard', { grievances });
+  } catch (err) {
+    console.error(err);
+  }
+}
+  else{
+    alert("You have entered Wrong Administrator details.Failed to Login as Administrator.Please Try Again");
+    res.render("admin.ejs",{msg})
+  }
+})
 app.post("/grievances", upload.single('attachments'), function(req, res) {
   const grievance = new Grievance({
     name: req.body.name,

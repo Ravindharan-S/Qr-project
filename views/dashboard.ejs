@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grievances List</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Grievances List</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Description</th>
+        <th>Attachments</th>
+      </tr>
+      <% grievances.forEach(grievance => { %>
+        <tr>
+          <td><%= grievance.name %></td>
+          <td><%= grievance.email %></td>
+          <td><%= grievance.phone %></td>
+          <td><%= grievance.description %></td>
+          <td>
+            <% if (grievance.attachments) { %>
+              <a href="<%= grievance.attachments %>">Download</a>
+            <% } else { %>
+              No attachments
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
