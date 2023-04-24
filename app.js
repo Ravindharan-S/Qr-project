@@ -217,12 +217,12 @@ app.post("/admin",(req,res)=>{
 
   if(user==="Ravi" && pass==="ravi1234"){
     try {
-      db.collection('grievances').find({},(err,grievances)=>{
+      db.collection('grievances').findOne({},(err,grievance)=>{
         if (err) {
           console.error(err);
           return res.status(500).send('Internal Server Error');
         }
-        res.render('dashboard', { grievances });
+        res.render('dashboard', { grievance });
       })
 
   } catch (err) {
