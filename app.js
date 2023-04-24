@@ -217,7 +217,7 @@ app.post("/admin",(req,res)=>{
 
   if(user==="Ravi" && pass==="ravi1234"){
     try {
-      const grievances =Grievance.find();
+      const grievances =grievances.find();
     res.render('dashboard', { grievances });
   } catch (err) {
     console.error(err);
