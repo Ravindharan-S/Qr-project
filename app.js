@@ -217,13 +217,18 @@ app.post("/admin",(req,res)=>{
 
   if(user==="Ravi" && pass==="ravi1234"){
     try {
-      db.collection('grievances').findOne({},(err,grievance)=>{
-        if (err) {
-          console.error(err);
-          return res.status(500).send('Internal Server Error');
-        }
-        res.render('dashboard', { grievance });
-      })
+      const collection = db.collection('grievances');
+  collection.find({}).toArray(function(err, grievances) {
+
+    console.log(grievances);
+
+      // db.collection('grievances').find({},(err,grievances)=>{
+      //   if (err) {
+      //     console.error(err);
+      //     return res.status(500).send('Internal Server Error');
+      //   }
+        res.render('dashboard', { grievances });
+      // })
 
   } catch (err) {
     console.error(err);
