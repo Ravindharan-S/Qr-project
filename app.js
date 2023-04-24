@@ -216,24 +216,14 @@ app.post("/admin",(req,res)=>{
   const pass=req.body.password;
 
   if(user==="Ravi" && pass==="ravi1234"){
-    try {
-      const collection = db.collection('grievances');
-  collection.find({}).toArray(function(err, grievances) {
 
-    console.log(grievances);
+      Grievance.find().then(grievances => {
+  res.render('dashboard', { grievances });
+}).catch(error => {
+  console.error(error);
+});
 
-      // db.collection('grievances').find({},(err,grievances)=>{
-      //   if (err) {
-      //     console.error(err);
-      //     return res.status(500).send('Internal Server Error');
-      //   }
-        res.render('dashboard', { grievances });
        })
-
-  } catch (err) {
-    console.error(err);
-  }
-}
   else{
     alert("You have entered Wrong Administrator details.Failed to Login as Administrator.Please Try Again");
     res.render("admin.ejs",{msg})
