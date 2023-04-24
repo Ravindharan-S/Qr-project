@@ -217,8 +217,14 @@ app.post("/admin",(req,res)=>{
 
   if(user==="Ravi" && pass==="ravi1234"){
     try {
-      const grievances =grievances.find();
-    res.render('dashboard', { grievances });
+      db.collection('grievances').find({},(err,grievances)=>{
+        if (err) {
+          console.error(err);
+          return res.status(500).send('Internal Server Error');
+        }
+        res.render('dashboard', { grievances });
+      })
+
   } catch (err) {
     console.error(err);
   }
