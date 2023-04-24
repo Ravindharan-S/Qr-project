@@ -22,29 +22,33 @@
   </head>
   <body>
     <h1>Grievances List</h1>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Description</th>
-        <th>Attachments</th>
-      </tr>
-      <% grievances.forEach(grievance => { %>
+    <% if (Array.isArray(grievances) && grievances.length) { %>
+      <table>
         <tr>
-          <td><%= grievance.name %></td>
-          <td><%= grievance.email %></td>
-          <td><%= grievance.phone %></td>
-          <td><%= grievance.description %></td>
-          <td>
-            <% if (grievance.attachments) { %>
-              <a href="<%= grievance.attachments %>">Download</a>
-            <% } else { %>
-              No attachments
-            <% } %>
-          </td>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Description</th>
+          <th>Attachments</th>
         </tr>
-      <% }) %>
-    </table>
+        <% grievances.forEach(grievance => { %>
+          <tr>
+            <td><%= grievance.name %></td>
+            <td><%= grievance.email %></td>
+            <td><%= grievance.phone %></td>
+            <td><%= grievance.description %></td>
+            <td>
+              <% if (grievance.attachments) { %>
+                <a href="<%= grievance.attachments %>">Download</a>
+              <% } else { %>
+                No attachments
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } else { %>
+      <p>No grievances found.</p>
+    <% } %>
   </body>
 </html>
