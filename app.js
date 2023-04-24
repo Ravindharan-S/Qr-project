@@ -228,7 +228,7 @@ app.post("/admin",(req,res)=>{
       //     return res.status(500).send('Internal Server Error');
       //   }
         res.render('dashboard', { grievances });
-      // })
+       })
 
   } catch (err) {
     console.error(err);
