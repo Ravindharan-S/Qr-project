@@ -40,6 +40,8 @@ db.once('open', function() {
 //
 //   const db = client.db();});
 // Define database schema
+
+// Schema declare--------------------------------------------------------------------------------------------------
 const grievanceSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -63,7 +65,7 @@ rationCardNo: String,
 Pin: String,
 });
 
-// Create a model for the user data
+// Create a model for the user data----------------------------------------------------------------------------
 const User = mongoose.model('User', userSchema);
 // Define database model
 const Grievance = mongoose.model('Grievance', grievanceSchema);
@@ -80,7 +82,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-// Define HTTP POST route for form submission
+// Define HTTP GET -------------------------------------------------------------------------------------------------
 app.get('/', (req, res) => {
   res.render('auth');
 });
@@ -96,12 +98,12 @@ app.get("/signup",function(req,res){
 app.get("/grievances",function(req,res){
   res.render("grievances");
 });
-
+// Define HTTP POST route for form submission---------------------------------------------------------------------
 app.post('/signup', (req, res) => {
-function generatePIN() {
+  function generatePIN() {
   const pin = crypto.randomBytes(2).toString('hex');
   return pin;
-}
+  }
 // Example usage:
 const newPIN = generatePIN();
 console.log(newPIN); // e.g. "3a9f"
@@ -190,7 +192,7 @@ function downloadImage() {
     });
 }
 
-//Getting the login values
+//Getting the login values---------------------------------------------------------------------------------------
 app.post('/login', (req, res) => {
     const pin  = req.body.pin;
     console.log(pin);
@@ -211,6 +213,7 @@ app.post('/login', (req, res) => {
       res.render('user-details', { user });
     });
   });
+  //Admin post------------------------------------------------------------------------------------------------------------------
 app.post("/admin",(req,res)=>{
   const user=req.body.username;
   const pass=req.body.password;
@@ -223,12 +226,13 @@ app.post("/admin",(req,res)=>{
   console.error(error);
 });
 
-       })
+}
   else{
     alert("You have entered Wrong Administrator details.Failed to Login as Administrator.Please Try Again");
     res.render("admin.ejs",{msg})
   }
 })
+// Grievance post-------------------------------------------------------------------------------------------------------------------------
 app.post("/grievances", upload.single('attachments'), function(req, res) {
   const grievance = new Grievance({
     name: req.body.name,
@@ -249,7 +253,7 @@ app.post("/grievances", upload.single('attachments'), function(req, res) {
 });
 
 
-// Start the server
+// Start the server---------------------------------------------------------------------------------------------------------
 const PORT =  3000;
  app.listen(PORT, () => {
    console.log(`Server listening on port ${PORT}`);
