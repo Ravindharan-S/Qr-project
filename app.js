@@ -95,6 +95,12 @@ app.get("/admin",function(req,res){
 app.get("/signup",function(req,res){
   res.render("signup");
 });
+app.get("/about",function(req,res){
+  res.render("about");
+});
+app.get("/features",function(req,res){
+  res.render("features");
+});
 app.get("/grievances",function(req,res){
   res.render("grievances");
 });
