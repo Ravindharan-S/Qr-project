@@ -4,6 +4,21 @@
   <title>User Details</title>
   <style media="screen">
     body{background-color: #E3F2C1;}
+    .button {
+      display: inline-block;
+      padding: 12px 24px;
+      margin: 20px;
+      background-color: #E5BEEC;
+      color: #2A2F4F;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #3e8e41;
+    }
   </style>
 </head>
 <body>
@@ -20,6 +35,6 @@
   <p>EB Service No: <%= user.ebServiceNo %></p>
   <p>Ration Card No/GST No: <%= user.rationCardNo %></p>
 
-  <button onclick="location.href='/grievances'">Register Complaint</button>
+  <button class="button" onclick="location.href='/grievances'">Register Complaint</button>
 </body>
 </html>
