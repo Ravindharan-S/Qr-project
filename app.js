@@ -233,10 +233,7 @@ app.post("/admin",(req,res)=>{
 });
 
 }
-  else{
-    alert("You have entered Wrong Administrator details.Failed to Login as Administrator.Please Try Again");
-    res.render("admin.ejs",{msg})
-  }
+  
 })
 // Grievance post-------------------------------------------------------------------------------------------------------------------------
 app.post("/grievances", upload.single('attachments'), function(req, res) {
