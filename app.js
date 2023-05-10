@@ -43,23 +43,21 @@ db.once('open', function() {
 
 // Schema declare--------------------------------------------------------------------------------------------------
 const grievanceSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: { type: String },
+  Name: { type: String, required: true },
+  Street_Name: { type: String },
+  Phone: { type: String , required: true},
+  Ward_No: { type: String , required: true},
+  Complaint_Type: { type: String , required: true},
   description: { type: String, required: true },
   attachments: { type: String }
 });
 const userSchema = new mongoose.Schema({
   wardNo: String,
   streetName: String,
-blockNo: String,
-floorNo: String,
 doorNo: String,
 contactName: String,
 contactNo: String,
 buildingUsage: String,
-propertyTaxNo: String,
-waterTaxNo: String,
 ebServiceNo: String,
 rationCardNo: String,
 Pin: String,
@@ -86,8 +84,15 @@ const upload = multer({ storage: storage });
 app.get('/', (req, res) => {
   res.render('auth');
 });
-app.get("/login",function(req,res){
-  res.render("login");
+app.get("/first",function(req,res){
+  res.render("first");
+});
+app.get("/ward",function(req,res){
+  res.render("ward");
+});
+app.get("/wardNo/:ward",function(req,res){
+  const ward=req.params.ward;
+  res.render("login",{ward});
 });
 app.get("/admin",function(req,res){
   res.render("admin");
@@ -102,7 +107,9 @@ app.get("/features",function(req,res){
   res.render("features");
 });
 app.get("/grievances",function(req,res){
-  res.render("grievances");
+ const wardNo=req.query.wardNo;
+
+  res.render("grievances",{wardNo});
 });
 // Define HTTP POST route for form submission---------------------------------------------------------------------
 app.post('/signup', (req, res) => {
@@ -117,14 +124,10 @@ console.log(newPIN); // e.g. "3a9f"
 const userData = {
 wardNo: req.body.wardNo,
 streetName: req.body.streetName,
-blockNo: req.body.blockNo,
-floorNo: req.body.floorNo,
 doorNo: req.body.doorNo,
 contactName: req.body.contactName,
 contactNo: req.body.contactNo,
 buildingUsage: req.body.buildingUsage,
-propertyTaxNo: req.body.propertyTaxNo,
-waterTaxNo: req.body.waterTaxNo,
 ebServiceNo: req.body.ebServiceNo,
 rationCardNo: req.body.rationCardNo,
 Pin:newPIN,
@@ -201,11 +204,13 @@ function downloadImage() {
 //Getting the login values---------------------------------------------------------------------------------------
 app.post('/login', (req, res) => {
     const pin  = req.body.pin;
+    const wardNo= req.body.ward;
+    console.log(wardNo);
     console.log(pin);
 
 
     // Find the user with the given PIN number in the database
-    db.collection('users').findOne({Pin:pin} , (err, user) => {
+    db.collection('users').findOne({Pin:pin,wardNo:wardNo } , (err, user) => {
       if (err) {
         console.error(err);
         return res.status(500).send('Internal Server Error');
@@ -233,14 +238,16 @@ app.post("/admin",(req,res)=>{
 });
 
 }
-  
+
 })
 // Grievance post-------------------------------------------------------------------------------------------------------------------------
 app.post("/grievances", upload.single('attachments'), function(req, res) {
   const grievance = new Grievance({
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
+    Name: req.body.name,
+    Street_Name: req.body.streetName,
+    Phone: req.body.phone,
+    Ward_No: req.body.wardNo,
+    Complaint_Type:req.body.complaint,
     description: req.body.description,
     attachments: req.file ? req.file.filename : null
   });

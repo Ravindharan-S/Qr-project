@@ -12,6 +12,14 @@
         display: block;
         margin-bottom: 5px;
       }
+      select {
+        font-size: 1rem;
+        padding: 0.5rem;
+        border: 4px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+      }
       input[type="text"], textarea {
         width: 100%;
         padding: 10px;
@@ -38,12 +46,26 @@
   <body>
     <h1>Grievance Registration Form</h1>
     <form action="/grievances" method="post">
-      <label for="name">Complaint type</label>
+      <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" required>
+      <label for="wardNo">Ward No:</label>
+      <input type="text" id="wardNo" name="wardNo" value="<%=wardNo%>" >
+      <label for="streetName">Street Name:</label>
+      <input type="text" id="streetName" name="streetName" >
       <label for="phone">Phone:</label>
-      <input type="text" id="phone" name="phone">
+      <input type="text" id="phone" name="phone" required>
+      <label for="Complaint-type">Complaint Type</label>
+      <select name="complaint" >
+      <option value="Sanitation">Sanitation</option>
+      <option value="Garbage collection">Garbage collection</option>
+      <option value="Water Supply">Water Supply</option>
+      <option value="Street light">Street Light</option>
+      <option value="Electricity">Electricity</option>
+      <option value="Public Toilet">Public Toilet</option>
+      <option value="Others">Others</option>
+      </select>
+
+
       <label for="description">Grievance Description:</label>
       <textarea id="description" name="description" required></textarea>
       <label for="attachments">Attachments:</label>

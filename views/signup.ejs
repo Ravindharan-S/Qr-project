@@ -17,7 +17,14 @@ label {
   margin-bottom: 5px;
   font-weight: bold;
 }
-
+select {
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 4px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+}
 input[type="text"] {
   padding: 8px;
   width: 100%;
@@ -54,11 +61,7 @@ body{
     <label for="streetName">Street Name:</label>
     <input type="text" id="streetName" name="streetName" required><br>
 
-    <label for="blockNo">Block No:</label>
-    <input type="text" id="blockNo" name="blockNo" required><br>
 
-    <label for="floorNo">Floor No:</label>
-    <input type="text" id="floorNo" name="floorNo" required><br>
 
     <label for="doorNo">Door No:</label>
     <input type="text" id="doorNo" name="doorNo" required><br>
@@ -70,13 +73,13 @@ body{
     <input type="text" id="contactNo" name="contactNo" required><br>
 
     <label for="buildingUsage">Building Usage:</label>
-    <input type="text" id="buildingUsage" name="buildingUsage" required><br>
 
-    <label for="propertyTaxNo">Property Tax No:</label>
-    <input type="text" id="propertyTaxNo" name="propertyTaxNo" required><br>
+    <select name="buildingUsage" >
+    <option value="Commercial">Commercial</option>
+    <option value="Residential">Residential</option>
+    <option value="Others">Others</option>
 
-    <label for="waterTaxNo">Water Tax No:</label>
-    <input type="text" id="waterTaxNo" name="waterTaxNo" required><br>
+    </select>
 
     <label for="ebServiceNo">EB Service No:</label>
     <input type="text" id="ebServiceNo" name="ebServiceNo" required><br>

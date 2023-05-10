@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Buttons</title>
+    <style media="screen">
+      h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+body{
+  background-image: url("/image/cheyyur1.jpg");
+  background-repeat: no-repeat, repeat;
+
+   background-size: cover;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.login-box {
+  margin: 1rem;
+}
+
+.login-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-button img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.login-button h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Select Your Ward To Login</h1>
+    <div class="login-container">
+      <% const loginButtons = [
+          {
+            title: "Ward 1",
+            imageSrc: "https://via.placeholder.com/150",
+            url: "/wardNo/1"
+          },
+          {
+            title: "Ward 2",
+            imageSrc: "https://via.placeholder.com/150",
+            url: "/wardNo/2"
+          },
+          {
+            title: "Ward 3",
+            imageSrc: "https://via.placeholder.com/150",
+            url: "/wardNo/3"
+          },
+          {
+            title: "Ward 4",
+            imageSrc: "https://via.placeholder.com/150",
+            url: "/wardNo/4"
+
+          }
+        ];
+        %>
+      <% loginButtons.forEach(button => { %>
+        <div class="login-box">
+          <a href="<%= button.url %>" class="login-button">
+            <img src="<%= button.imageSrc %>" alt="<%= button.title %> logo">
+            <h2><%= button.title %></h2>
+          </a>
+        </div>
+      <% }); %>
+    </div>
+  </body>
+</html>

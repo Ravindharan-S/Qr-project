@@ -29,16 +29,20 @@
       <table>
         <tr>
           <th>Name</th>
-          <th>Email</th>
+          <th>Street Name</th>
           <th>Phone</th>
+          <th>Ward No</th>
+          <th>Complaint Type</th>
           <th>Description</th>
           <th>Attachments</th>
         </tr>
         <% grievances.forEach(grievance => { %>
           <tr>
-            <td><%= grievance.name %></td>
-            <td><%= grievance.email %></td>
-            <td><%= grievance.phone %></td>
+            <td><%= grievance.Name %></td>
+            <td><%= grievance.Street_Name %></td>
+            <td><%= grievance.Phone %></td>
+            <td><%= grievance.Ward_No %></td>
+            <td><%= grievance.Complaint_Type %></td>
             <td><%= grievance.description %></td>
             <td>
               <% if (grievance.attachments) { %>
