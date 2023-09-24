@@ -55,8 +55,16 @@ body{
 <body>
   <h1 style="color:#19376D">Sign Up</h1>
   <form action="/signup" method="post">
-    <label for="wardNo">Ward No:</label>
-    <input type="text" id="wardNo" name="wardNo" required><br>
+    <!-- <label for="wardNo">Ward No:</label>
+    <input type="text" id="wardNo" name="wardNo" required><br> -->
+
+    <select name="wardNo" required >
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+
+    </select>
 
     <label for="streetName">Street Name:</label>
     <input type="text" id="streetName" name="streetName" required><br>
