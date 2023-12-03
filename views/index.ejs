@@ -1,0 +1,22 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number OTP Authentication</title>
+</head>
+
+<body>
+    <h1>Mobile Number OTP Authentication</h1>
+    <form action="/send-otp" method="post">
+        <label for="phoneNumber">Enter your phone number:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+        <button type="submit">Send OTP</button>
+    </form>
+    <p><%= message %></p>
+</body>
+
+</html>

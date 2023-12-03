@@ -44,16 +44,19 @@
     </style>
   </head>
   <body>
+
+    <h1>Welcome <%= user.contactName %>!</h1>
+    
     <h1>Grievance Registration Form</h1>
     <form action="/grievances" method="post">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" value="<%= user.contactName %>" required>
       <label for="wardNo">Ward No:</label>
-      <input type="text" id="wardNo" name="wardNo" value="<%=wardNo%>" >
+      <input type="text" id="wardNo" name="wardNo" value="<%= user.wardNo %> "  >
       <label for="streetName">Street Name:</label>
-      <input type="text" id="streetName" name="streetName" >
+      <input type="text" id="streetName" name="streetName" value="<%= user.streetName %>" >
       <label for="phone">Phone:</label>
-      <input type="text" id="phone" name="phone" required>
+      <input type="text" id="phone" name="phone" value="<%= user.contactNo %> "required>
       <label for="Complaint-type">Complaint Type</label>
       <select name="complaint" >
       <option value="Sanitation">Sanitation</option>

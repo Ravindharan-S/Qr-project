@@ -93,6 +93,7 @@ app.get("/ward",function(req,res){
 app.get("/wardNo/:ward",function(req,res){
   const ward=req.params.ward;
   res.render("login",{ward});
+
 });
 app.get("/admin",function(req,res){
   res.render("admin");
@@ -106,11 +107,11 @@ app.get("/about",function(req,res){
 app.get("/features",function(req,res){
   res.render("features");
 });
-app.get("/grievances",function(req,res){
- const wardNo=req.query.wardNo;
-
-  res.render("grievances",{wardNo});
-});
+// app.get("/grievances",function(req,res){
+//  const wardNo=req.query.wardNo;
+//
+//   res.render("grievances",{wardNo});
+// });
 // Define HTTP POST route for form submission---------------------------------------------------------------------
 app.post('/signup', (req, res) => {
   function generatePIN() {
@@ -221,7 +222,7 @@ app.post('/login', (req, res) => {
       }
 
       // Render the user details page with the user's information
-      res.render('user-details', { user });
+      res.render('grievances', { user });
     });
   });
   //Admin post------------------------------------------------------------------------------------------------------------------
@@ -257,7 +258,7 @@ app.post("/grievances", upload.single('attachments'), function(req, res) {
       console.error(err);
       res.status(500).send('Error saving grievance');
     } else {
-      res.send('Grievance registered successfully');
+      res.render('grievance-reg');
     }
   });
 });
