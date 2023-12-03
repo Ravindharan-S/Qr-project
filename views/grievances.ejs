@@ -8,6 +8,15 @@
         width: 80%;
         margin: 0 auto;
       }
+      h1{
+      font-family: sans-serif;
+      }
+      h2{
+        text-align: center;
+        font-size: 5;
+
+        color: #D8D9DA;
+      }
       label {
         display: block;
         margin-bottom: 5px;
@@ -47,7 +56,7 @@
 
     <h1>Welcome <%= user.contactName %>!</h1>
 
-    <h1>Grievance Registration Form</h1>
+    <h2>Grievance Registration Form</h2>
     <form action="/grievances" method="post">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" value="<%= user.contactName %>" required>
