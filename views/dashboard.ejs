@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Grievances List</title>
@@ -57,5 +57,94 @@
     <% } else { %>
       <p>No grievances found.</p>
     <% } %>
+  </body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grievances List</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+    body{
+      background-color: #9BA4B5;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Grievances List</h1>
+    <button onclick="sortGrievances('Ward_No')">Sort by Ward No</button>
+    <button onclick="sortGrievances('Complaint_Type')">Sort by Complaint Type</button>
+
+    <table id="grievancesTable">
+      <tr>
+        <th>Name</th>
+        <th>Street Name</th>
+        <th>Phone</th>
+        <th>Ward No</th>
+        <th>Complaint Type</th>
+        <th>Description</th>
+        <th>Attachments</th>
+      </tr>
+      <% grievances.forEach(grievance => { %>
+        <tr>
+          <td><%= grievance.Name %></td>
+          <td><%= grievance.Street_Name %></td>
+          <td><%= grievance.Phone %></td>
+          <td><%= grievance.Ward_No %></td>
+          <td><%= grievance.Complaint_Type %></td>
+          <td><%= grievance.description %></td>
+          <td>
+            <% if (grievance.attachments) { %>
+              <a href="<%= grievance.attachments %>">Download</a>
+            <% } else { %>
+              No attachments
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+
+    <script>
+      function sortGrievances(sortBy) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("grievancesTable");
+        switching = true;
+        while (switching) {
+          switching = false;
+          rows = table.getElementsByTagName("tr");
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[sortBy];
+            y = rows[i + 1].getElementsByTagName("td")[sortBy];
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+    </script>
   </body>
 </html>
