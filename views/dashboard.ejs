@@ -267,7 +267,7 @@
 
 
             <td>
-              <form action="/resolve-grievance" method="post">
+              <form id="resolveForm" action="/resolve-grievance" method="post">
         <input type="hidden" name="grievanceId" value="<%= grievance._id %>">
         <button type="submit"class="resolve-btn" >Resolve</button>
     </form>
@@ -283,6 +283,18 @@
 </div>
 
 <script>
+        document.getElementById('resolveForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Show confirmation pop-up
+            if (confirm('Are you sure you want to resolve this grievance?')) {
+                // Submit the form
+                this.submit();
+            }
+        });
+    </script>
+
+<!-- <script>
     // function resolveGrievance(grievanceId) {
     //     // Send an AJAX request to your server to mark the grievance as resolved
     //     // You can use JavaScript fetch API or any other library like Axios
@@ -328,6 +340,6 @@
     });
 }
 
-</script>
+</script> -->
 </body>
 </html>

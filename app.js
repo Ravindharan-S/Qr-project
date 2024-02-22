@@ -276,6 +276,7 @@ app.post('/resolve-grievance', (req, res) => {
         } else {
             // Send a response indicating success
             res.status(200).send('Grievance resolved successfully');
+            
         }
     });
 });
