@@ -263,6 +263,23 @@ app.post("/grievances", upload.single('attachments'), function(req, res) {
   });
 });
 
+//Resolve grievance
+
+app.post('/resolve-grievance', (req, res) => {
+    const grievanceId = req.body.grievanceId;
+    console.log(grievanceId);
+    // Delete the grievance from MongoDB based on the grievance ID
+    Grievance.findByIdAndDelete(grievanceId, (err, deletedGrievance) => {
+        if (err) {
+            console.error('Error resolving grievance:', err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            // Send a response indicating success
+            res.status(200).send('Grievance resolved successfully');
+        }
+    });
+});
+
 
 // Start the server---------------------------------------------------------------------------------------------------------
 const PORT =  3000;

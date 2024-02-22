@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Grievances List</title>
@@ -58,4 +58,276 @@
       <p>No grievances found.</p>
     <% } %>
   </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Grievances List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .attachment-link {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .attachment-link:hover {
+            text-decoration: underline;
+        }
+
+        .no-grievances {
+            text-align: center;
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Grievances List</h1>
+    <% if (Array.isArray(grievances) && grievances.length) { %>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Street Name</th>
+            <th>Phone</th>
+            <th>Ward No</th>
+            <th>Complaint Type</th>
+            <th>Description</th>
+            <th>Attachments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% grievances.forEach(grievance => { %>
+        <tr>
+            <td><%= grievance.Name %></td>
+            <td><%= grievance.Street_Name %></td>
+            <td><%= grievance.Phone %></td>
+            <td><%= grievance.Ward_No %></td>
+            <td><%= grievance.Complaint_Type %></td>
+            <td><%= grievance.description %></td>
+            <td>
+                <% if (grievance.attachments) { %>
+                <a href="<%= grievance.attachments %>" class="attachment-link">Download</a>
+                <% } else { %>
+                No attachments
+                <% } %>
+            </td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+    <p class="no-grievances">No grievances found.</p>
+    <% } %>
+</div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grievances List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .no-grievances {
+            text-align: center;
+            font-style: italic;
+            color: #999;
+        }
+
+        .resolve-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .resolve-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Grievances List</h1>
+    <% if (Array.isArray(grievances) && grievances.length) { %>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Street Name</th>
+            <th>Phone</th>
+            <th>Ward No</th>
+            <th>Complaint Type</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% grievances.forEach(grievance => { %>
+        <tr>
+            <td><%= grievance.Name %></td>
+            <td><%= grievance.Street_Name %></td>
+            <td><%= grievance.Phone %></td>
+            <td><%= grievance.Ward_No %></td>
+            <td><%= grievance.Complaint_Type %></td>
+            <td><%= grievance.description %></td>
+
+
+            <td>
+              <form action="/resolve-grievance" method="post">
+        <input type="hidden" name="grievanceId" value="<%= grievance._id %>">
+        <button type="submit"class="resolve-btn" >Resolve</button>
+    </form>
+                <!-- <button class="resolve-btn" onclick="resolveGrievance('<%= grievance._id %>')">Resolve</button> -->
+            </td>
+        </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <% } else { %>
+    <p class="no-grievances">No grievances found.</p>
+    <% } %>
+</div>
+
+<script>
+    // function resolveGrievance(grievanceId) {
+    //     // Send an AJAX request to your server to mark the grievance as resolved
+    //     // You can use JavaScript fetch API or any other library like Axios
+    //     // Example using fetch API:
+    //
+    //     fetch(`/resolve_grievance?id=${grievanceId}`, {
+    //         method: 'POST'
+    //         // Add headers if needed
+    //     })
+    //     .then(response => {
+    //         if (response.ok) {
+    //             // Optionally, reload the page or update the UI
+    //             location.reload();
+    //         } else {
+    //             console.error('Failed to resolve grievance');
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.error('Error resolving grievance:', error);
+    //     });
+    // }
+
+    function resolveGrievance(grievanceId) {
+    // Send an AJAX request to resolve the grievance
+    fetch('/resolve-grievance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ grievanceId: grievanceId })
+    })
+    .then(response => {
+        if (response.ok) {
+            // Remove the resolved grievance from the UI
+            const row = document.getElementById(grievanceId).parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        } else {
+            console.error('Failed to resolve grievance');
+        }
+    })
+    .catch(error => {
+        console.error('Error resolving grievance:', error);
+    });
+}
+
+</script>
+</body>
 </html>
