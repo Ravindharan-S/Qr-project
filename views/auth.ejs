@@ -62,12 +62,14 @@
     } */
   /* Center the container */
 .container1 {
-  margin: 0 10% 75%;
+  margin: 0 10% 15%;
   max-width: 350px;
-  padding-left: 4%;
-  border-style: double;
+  padding-top: 1%;
+  border-style:ridge;
+  text-align: center;
 
   border-color: #E5BEEC;
+  border-radius: 5%;
 
 }
 h1{
@@ -86,6 +88,13 @@ h2{
   padding-bottom: 2%;
   font-style: oblique;
   font-size: 3.5rem;
+  color: white;
+  text-shadow: 3px 3px black;
+}
+#logsign{
+  color: white;
+  text-shadow: 2px 2px black;
+
 }
 .heading{
   background-color: #F1F6F9;
@@ -162,11 +171,11 @@ h2{
   <h2 id="heading1">Welcome to the Grievance Registration site</h2>
 
     <div class="container1">
-    <h2>Login</h2>
+    <h2 id ="logsign">Login</h2>
     <button class="button" onclick="location.href='/ward'">Login</button>
     <!-- <h2>Login As Administrator</h2> -->
 
-    <h2>Sign Up</h2>
+    <h2 id="logsign">Sign Up</h2>
     <button class="button" onclick="location.href='/signup'">Sign Up</button>
   </div>
 </div>
