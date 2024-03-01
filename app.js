@@ -262,7 +262,21 @@ app.post("/grievances", upload.single('attachments'), function(req, res) {
     }
   });
 });
-
+//====================================
+app.post("/track",function(req,res){
+  const name=req.body.name;
+  const wardNo=req.body.wardNo;
+  const phone =req.body.phone;
+  Grievance.find({ Name: name, Ward_No: wardNo, Phone: phone }, (err, grievances) => {
+        if (err) {
+            console.error('Error fetching grievances:', err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.render('track.ejs', { grievances });
+        }
+    });
+})
+//====================================
 //Resolve grievance
 
 app.post('/resolve-grievance', (req, res) => {
@@ -276,7 +290,7 @@ app.post('/resolve-grievance', (req, res) => {
         } else {
             // Send a response indicating success
             res.status(200).send('Grievance resolved successfully');
-            
+
         }
     });
 });

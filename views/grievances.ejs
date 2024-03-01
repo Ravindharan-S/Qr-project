@@ -5,17 +5,23 @@
     <style>
       /* CSS styles for the form */
       form {
-        width: 80%;
-        margin: 0 auto;
+        /* width: 80%;
+        margin: 0 auto; */
+        margin: 20px auto;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       }
       h1{
       font-family: sans-serif;
       }
       h2{
+        font-weight: bolder;
         text-align: center;
-        font-size: 5;
-
-        color: #D8D9DA;
+        color:#9BCF53;
+        text-shadow: 1px 1px #416D19;
       }
       label {
         display: block;
@@ -48,16 +54,28 @@
         background-color: #45a049;
       }
       body{
-        background-color: #9BA4B5;
+        /* background-color: #9BA4B5; */
+        background-color: #C5EBAA;
       }
     </style>
   </head>
   <body>
 
-    <h1>Welcome <%= user.contactName %>!</h1>
 
-    <h2>Grievance Registration Form</h2>
+
+
+    <form  action="/track" method="post">
+      <h1>Welcome <%= user.contactName %>!</h1>
+        <input type="hidden" id="name" name="name" value="<%= user.contactName %>" required>
+        <input type="hidden" id="wardNo" name="wardNo" value="<%= user.wardNo %> "  >
+        <input type="hidden" id="phone" name="phone" value="<%= user.contactNo %> "required>
+      <input type="submit"  value="Track Your Grievance ">
+    </form>
+    <br><br>
+
+
     <form action="/grievances" method="post">
+        <h2>Grievance Registration Form</h2>
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" value="<%= user.contactName %>" required>
       <label for="wardNo">Ward No:</label>
