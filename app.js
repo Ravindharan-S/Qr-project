@@ -27,7 +27,8 @@ db.once('open', function() {
   console.log('Database connected');
 });
 
-
+const storage = multer.memoryStorage(); // Store files in memory as buffers
+const upload = multer({ storage: storage });
 
 // Connect to MongoDB
 // const mongoClient = new MongoClient(DB_URL, { useUnifiedTopology: true });
@@ -49,7 +50,8 @@ const grievanceSchema = new mongoose.Schema({
   Ward_No: { type: String , required: true},
   Complaint_Type: { type: String , required: true},
   description: { type: String, required: true },
-  attachments: { type: String }
+  submissionDate: { type: Date, default: Date.now },
+  attachments: { type: Buffer }
 });
 const userSchema = new mongoose.Schema({
   wardNo: String,
@@ -69,15 +71,15 @@ const User = mongoose.model('User', userSchema);
 const Grievance = mongoose.model('Grievance', grievanceSchema);
 
 // Define file upload configuration
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/');
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-const upload = multer({ storage: storage });
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'uploads/');
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, Date.now() + '-' + file.originalname);
+//   }
+// });
+// const upload = multer({ storage: storage });
 
 
 // Define HTTP GET -------------------------------------------------------------------------------------------------
@@ -98,6 +100,14 @@ app.get("/wardNo/:ward",function(req,res){
 app.get("/admin",function(req,res){
   res.render("admin");
 });
+// app.get("/dashboard",function(req,res){
+//   Grievance.find().then(grievances => {
+// res.render('dashboard', { grievances });
+// }).catch(error => {
+// console.error(error);
+// });
+// })
+
 app.get("/signup",function(req,res){
   res.render("signup");
 });
@@ -166,41 +176,13 @@ res.status(500).send('Error saving user to database');
 });
 //downloading Qr--------------------------------------------------------------------------------
 // Node.js endpoint to generate and return the image
-app.get('/generate-image', function(req, res) {
-  // Generate the image using your favorite library (e.g. canvas, sharp)
-  const image = generateImage();
 
-  // Set the content-disposition header to trigger a download
-  res.set('Content-Disposition', `attachment; filename="my-image.png"`);
-
-  // Set the content-type header to indicate the type of the response
-  res.set('Content-Type', 'image/png');
-
-  // Send the image as the response body
-  res.send(image);
-});
 
 // HTML button to trigger the download
 
 
 // JavaScript function to trigger the download
-function downloadImage() {
-  // Make a GET request to the endpoint
-  fetch('/generate-image')
-    .then(response => {
-      // Trigger the download using the response headers
-      const filename = response.headers.get('content-disposition').split('=')[1];
-      response.blob().then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
-    });
-}
+
 
 //Getting the login values---------------------------------------------------------------------------------------
 app.post('/login', (req, res) => {
@@ -242,7 +224,8 @@ app.post("/admin",(req,res)=>{
 
 })
 // Grievance post-------------------------------------------------------------------------------------------------------------------------
-app.post("/grievances", upload.single('attachments'), function(req, res) {
+app.post("/grievances", upload.single('attachment'), function(req, res) {
+
   const grievance = new Grievance({
     Name: req.body.name,
     Street_Name: req.body.streetName,
@@ -250,7 +233,7 @@ app.post("/grievances", upload.single('attachments'), function(req, res) {
     Ward_No: req.body.wardNo,
     Complaint_Type:req.body.complaint,
     description: req.body.description,
-    attachments: req.file ? req.file.filename : null
+    attachments: req.file.buffer
   });
 
   grievance.save(function(err) {
@@ -290,7 +273,7 @@ app.post('/resolve-grievance', (req, res) => {
         } else {
             // Send a response indicating success
             res.status(200).send('Grievance resolved successfully');
-
+            // res.redirect('/dashboard');
         }
     });
 });

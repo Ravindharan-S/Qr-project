@@ -74,7 +74,7 @@
     <br><br>
 
 
-    <form action="/grievances" method="post">
+    <form action="/grievances" method="post" enctype="multipart/form-data">
         <h2>Grievance Registration Form</h2>
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" value="<%= user.contactName %>" required>
@@ -98,8 +98,8 @@
 
       <label for="description">Grievance Description:</label>
       <textarea id="description" name="description" required></textarea>
-      <label for="attachments">Attachments:</label>
-      <input type="file" id="attachments" name="attachments">
+      <label for="attachment">Attachments:</label>
+      <input type="file" id="attachment" name="attachment" accept="image/*">
       <input type="submit" value="Submit">
     </form>
   </body>

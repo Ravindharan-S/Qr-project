@@ -189,7 +189,14 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
+        .attachment-link {
+            text-decoration: none;
+            color: #007bff;
+        }
 
+        .attachment-link:hover {
+            text-decoration: underline;
+        }
         h1 {
             color: #333;
             text-align: center;
@@ -252,6 +259,10 @@
             <th>Ward No</th>
             <th>Complaint Type</th>
             <th>Description</th>
+            <th>
+              SubmittedON
+            </th>
+            <!-- <th>Attachments</th> -->
             <th>Action</th>
         </tr>
         </thead>
@@ -264,7 +275,14 @@
             <td><%= grievance.Ward_No %></td>
             <td><%= grievance.Complaint_Type %></td>
             <td><%= grievance.description %></td>
-
+            <td>  <%= grievance.submissionDate %> </td>
+            <!-- <td>
+               <% if (grievance.attachments) { %>
+                   <img src="data:image/png;base64,<%= grievance.attachments %>" alt="Attachment" width="100">
+               <% } else { %>
+                   No attachments
+               <% } %>
+           </td> -->
 
             <td>
               <form id="resolveForm" action="/resolve-grievance" method="post">
