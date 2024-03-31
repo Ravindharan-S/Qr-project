@@ -51,7 +51,7 @@ const grievanceSchema = new mongoose.Schema({
   Complaint_Type: { type: String , required: true},
   description: { type: String, required: true },
   submissionDate: { type: Date, default: Date.now },
-  attachments: { type: Buffer }
+  // attachments: { type: Buffer }
 });
 const userSchema = new mongoose.Schema({
   wardNo: String,
@@ -224,7 +224,7 @@ app.post("/admin",(req,res)=>{
 
 })
 // Grievance post-------------------------------------------------------------------------------------------------------------------------
-app.post("/grievances", upload.single('attachment'), function(req, res) {
+app.post("/grievances",  function(req, res) {
 
   const grievance = new Grievance({
     Name: req.body.name,
@@ -233,7 +233,7 @@ app.post("/grievances", upload.single('attachment'), function(req, res) {
     Ward_No: req.body.wardNo,
     Complaint_Type:req.body.complaint,
     description: req.body.description,
-    attachments: req.file.buffer
+    // attachments: req.file.buffer
   });
 
   grievance.save(function(err) {
