@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const bodyParser=require('body-parser');
 const qrcode = require('qrcode');
+const moment= require('moment-timezone');
   const crypto = require('crypto');
   const MongoClient = require('mongodb').MongoClient;
   const ObjectId = require('mongodb').ObjectId;
@@ -50,7 +51,7 @@ const grievanceSchema = new mongoose.Schema({
   Ward_No: { type: String , required: true},
   Complaint_Type: { type: String , required: true},
   description: { type: String, required: true },
-  submissionDate: { type: Date, default: Date.now },
+  submissionDate: { type: Date },
   // attachments: { type: Buffer }
 });
 const userSchema = new mongoose.Schema({
@@ -225,7 +226,7 @@ app.post("/admin",(req,res)=>{
 })
 // Grievance post-------------------------------------------------------------------------------------------------------------------------
 app.post("/grievances",  function(req, res) {
-
+  const date=new Date();
   const grievance = new Grievance({
     Name: req.body.name,
     Street_Name: req.body.streetName,
@@ -233,6 +234,7 @@ app.post("/grievances",  function(req, res) {
     Ward_No: req.body.wardNo,
     Complaint_Type:req.body.complaint,
     description: req.body.description,
+    submissionDate: moment(date).tz('Asia/Calcutta').format('YYYY-MM-DD HH:mm:ss'),
     // attachments: req.file.buffer
   });
 
